@@ -1,0 +1,26 @@
+# ----------------------------------------------------------------------
+# Hostinger / Apache Configuration - All Star Roofing
+# ----------------------------------------------------------------------
+
+# 1. Prevent Directory Browsing
+Options -Indexes
+
+# 2. Enable Rewrite Engine
+RewriteEngine On
+
+# 3. Clean URLs (Allow /roof-replacement to load roof-replacement.html)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^(.*)$ $1.html [L]
+
+# 4. Browser Caching for Fast Performance
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 1 month"
+  ExpiresByType image/x-icon "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+</IfModule>
